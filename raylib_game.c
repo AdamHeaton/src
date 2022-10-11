@@ -23,7 +23,7 @@
 // Shared Variables Definition (global)
 // NOTE: Those variables are shared between modules through screens.h
 //----------------------------------------------------------------------------------
-GameScreen currentScreen = 0;
+//GameScreen currentScreen = 0;
 Font font = { 0 };
 Music music = { 0 };
 Sound fxCoin = { 0 };
@@ -61,7 +61,7 @@ int main(void)
    while(!WindowShouldClose())
    {
     BeginDrawing();
-    ClearBackground(BLACK);
+    ClearBackground(ORANGE);
     DrawCircle(50, 50, 20, RED);
     DrawCircle(150, 50, 20, YELLOW);
     DrawCircle(250, 50, 20, RED);
