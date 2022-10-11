@@ -4,6 +4,11 @@
             "cwd": "/Users/adzo/Documents/DKIT /1. Software Engineering/WORKING TEMPLATE/BLANK TEMPLATE/src",
             "binaryPath": "/Users/adzo/Documents/DKIT /1. Software Engineering/WORKING TEMPLATE/BLANK TEMPLATE/src/raylib_game",
             "binaryArgs": []
+        },
+        {
+            "cwd": "/Users/adzo/Documents/DKIT /1. Software Engineering/Lecture 5/BLANK TEMPLATE/src",
+            "binaryPath": "/Users/adzo/Documents/DKIT /1. Software Engineering/Lecture 5/BLANK TEMPLATE/src/raylib_game",
+            "binaryArgs": []
         }
     ]
 }

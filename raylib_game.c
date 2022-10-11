@@ -16,10 +16,13 @@
 #include "raylib.h"
 #include "screens.h"    // NOTE: Declares global (extern) variables and screens functions
 
+//The following lines of code are extraneous but necessary to run using Makefile. Please ignore.
 Font font = { 0 };
 Music music = { 0 };
 Sound fxCoin = { 0 };
-
+//Texture2D scarfy = LoadTexture("/Users/adzo/Documents/DKIT /1. Software Engineering/Lecture 5/BLANK TEMPLATE/src/resources/scarfy.png");
+int windowWidth = 500;
+int windowHeight = 500;
 
 //----------------------------------------------------------------------------------
 // Main entry point
@@ -27,26 +30,26 @@ Sound fxCoin = { 0 };
 int main(void)
 {
    InitWindow(500, 500, "WINDOW");
+    Texture2D scarfy = LoadTexture("resources/scarfy.png");
+
+    Rectangle scarfyRec;
+    scarfyRec.width = scarfy.width/6;
+    scarfyRec.height = scarfy.height;
+    scarfyRec.x = 0;
+    scarfyRec.y = 0; 
+    Vector2 scarfyPos;
+    scarfyPos.x = windowWidth/2 - scarfyRec.width/2;
+    scarfyPos.y = windowHeight - scarfyRec.height*3;
+
    while(!WindowShouldClose())
    {
     BeginDrawing();
-    ClearBackground(ORANGE);
-    DrawCircle(50, 50, 20, RED);
-    DrawCircle(150, 50, 20, YELLOW);
-    DrawCircle(250, 50, 20, RED);
-    DrawCircle(350, 50, 20, GREEN);
-    DrawCircle(450, 50, 20, RED);
-    DrawCircle(50, 450, 20, GREEN);
-    DrawCircle(150, 350, 20, RED);
-    DrawCircle(250, 250, 20, BLUE);
-    DrawCircle(350, 150, 20, GREEN);
-    DrawCircle(450, 50, 20, PURPLE);
+    DrawTextureRec(scarfy, scarfyRec, scarfyPos, WHITE);
+    ClearBackground(RED);
 
     EndDrawing();
    }
 
     CloseWindow();          // Close window and OpenGL context
-    
-
     return 0;
 }
