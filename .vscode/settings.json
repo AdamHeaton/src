@@ -9,6 +9,19 @@
             "cwd": "/Users/adzo/Documents/DKIT /1. Software Engineering/Lecture 5/BLANK TEMPLATE/src",
             "binaryPath": "/Users/adzo/Documents/DKIT /1. Software Engineering/Lecture 5/BLANK TEMPLATE/src/raylib_game",
             "binaryArgs": []
+        },
+        {
+            "cwd": "/Users/adzo/Documents/DKIT /1. Software Engineering/Lecture 5 copy/BLANK TEMPLATE/src",
+            "binaryPath": "/Users/adzo/Documents/DKIT /1. Software Engineering/Lecture 5 copy/BLANK TEMPLATE/src/raylib_game",
+            "binaryArgs": []
+        },
+        {
+            "cwd": "/Users/adzo/Documents/DKIT /1. Software Engineering/CA1/CA1/src",
+            "binaryPath": "/Users/adzo/Documents/DKIT /1. Software Engineering/CA1/CA1/src/raylib_game",
+            "binaryArgs": []
         }
-    ]
+    ],
+    "files.associations": {
+        "__node_handle": "c"
+    }
 }

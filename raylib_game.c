@@ -9,47 +9,89 @@
 *   Build target: [raylib_game]
 *   Launch target [raylib_game]
 *
-*   Thank you
 *
 ********************************************************************************************/
 
 #include "raylib.h"
-#include "screens.h"    // NOTE: Declares global (extern) variables and screens functions
 
-//The following lines of code are extraneous but necessary to run using Makefile. Please ignore.
-Font font = { 0 };
-Music music = { 0 };
-Sound fxCoin = { 0 };
-//Texture2D scarfy = LoadTexture("/Users/adzo/Documents/DKIT /1. Software Engineering/Lecture 5/BLANK TEMPLATE/src/resources/scarfy.png");
-int windowWidth = 500;
-int windowHeight = 500;
+//----------------------------------------------------------------------------------
+// Types and Structures Definition
+//----------------------------------------------------------------------------------
+
 
 //----------------------------------------------------------------------------------
 // Main entry point
 //----------------------------------------------------------------------------------
 int main(void)
 {
-   InitWindow(500, 500, "WINDOW");
-    Texture2D scarfy = LoadTexture("resources/scarfy.png");
+    // Initialization
+    //--------------------------------------------------------------------------------------
+    const int screenWidth = 800;
+    const int screenHeight = 600;
 
-    Rectangle scarfyRec;
-    scarfyRec.width = scarfy.width/6;
-    scarfyRec.height = scarfy.height;
-    scarfyRec.x = 0;
-    scarfyRec.y = 0; 
-    Vector2 scarfyPos;
-    scarfyPos.x = windowWidth/2 - scarfyRec.width/2;
-    scarfyPos.y = windowHeight - scarfyRec.height*3;
+    InitWindow(screenWidth, screenHeight, "Pong Game");
 
-   while(!WindowShouldClose())
-   {
-    BeginDrawing();
-    DrawTextureRec(scarfy, scarfyRec, scarfyPos, WHITE);
-    ClearBackground(RED);
+    Vector2 ballPosition = {screenWidth/2, screenHeight/2};
+    Color ballColor = DARKBLUE;
+    int paddlePosition = screenHeight/2;
+    int paddleWidth = 10;
+    int paddleHeight = 50;
+    int ballRadius = 10;
 
-    EndDrawing();
-   }
+    SetTargetFPS(60);                 // Set our game to run at 60 frames-per-second
+    //---------------------------------------------------------------------------------------
 
-    CloseWindow();          // Close window and OpenGL context
+    // Main game loop
+    while (!WindowShouldClose())    // Detect window close button or ESC key
+    {
+        // Update
+        //----------------------------------------------------------------------------------
+        paddlePosition = GetMouseY();
+
+        //----------------------------------------------------------------------------------
+
+        // Draw
+        //----------------------------------------------------------------------------------
+        BeginDrawing();
+
+            ClearBackground(RAYWHITE);
+            DrawLine(screenWidth/2, 0, screenWidth/2, screenHeight, LIGHTGRAY);                
+            // Draw a line across the middle of the screen vertically, for testing
+            DrawLine(0, screenHeight/2, screenWidth, screenHeight/2, LIGHTGRAY);                
+            // Draw a line across the middle of the screen horizontally, for testing
+
+            if ((paddlePosition - paddleHeight/2) <= 0) paddlePosition = paddleHeight/2;    
+            /* this if statement checks to see if the paddle goes off the top of the screen 
+            (ie has a value LESS than zero when the paddle's height is factored in)
+            and then it stays at the height of the paddle divided by two */
+            if ((paddlePosition + paddleHeight/2) >= screenHeight) paddlePosition = screenHeight-paddleHeight/2;    
+            /* and this does roughly the same in order to check that the paddle doesn't go off the bottom of the screen */
+        
+            DrawRectangle((screenWidth/100*1)-paddleWidth/2, paddlePosition-paddleHeight/2, paddleWidth, paddleHeight, BLACK);
+            /* This line of code draws our left paddle. It factors in the paddle's height and width in order to draw the paddle from 
+            the centre instead of the top left.
+            */
+            DrawRectangle((screenWidth/100*99)-paddleWidth/2, (screenHeight-paddleHeight)-(paddlePosition-paddleHeight/2), paddleWidth, paddleHeight, BLACK);
+            /* This line of code draws our right paddle. It factors in the paddle's height and width in order to draw the paddle from 
+            the centre instead of the top left. */
+
+            DrawCircle((screenWidth/2), screenHeight/2, ballRadius, RED);
+
+
+
+
+
+            DrawText(TextFormat("Paddle position Y: %03i", paddlePosition-paddleHeight/2), 10, 40, 20, GRAY);
+
+
+        EndDrawing();
+        //----------------------------------------------------------------------------------
+    }
+
+    // De-Initialization
+    //--------------------------------------------------------------------------------------
+    CloseWindow();        // Close window and OpenGL context
+    //--------------------------------------------------------------------------------------
+
     return 0;
 }
